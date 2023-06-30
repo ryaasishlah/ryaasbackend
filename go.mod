@@ -1,4 +1,4 @@
-module github.com/ryaasishlah/ws/Chapter03/A/backend
+module github.com/ryaasishlah/ryaasbackend
 
 go 1.20
 

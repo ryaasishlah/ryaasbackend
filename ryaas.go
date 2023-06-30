@@ -1,4 +1,4 @@
-package ryaas
+package ryaasbackend
 
 import (
 	"context"

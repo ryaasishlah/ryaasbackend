@@ -1,4 +1,4 @@
-package ryaas
+package ryaasbackend
 
 import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
