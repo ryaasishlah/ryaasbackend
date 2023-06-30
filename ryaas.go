@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -65,4 +66,74 @@ func InsertDiskon(db string, diskon Diskon) (InsertedID interface{}) {
 		fmt.Printf("InsertDiskon: %v\n", err)
 	}
 	return insertResult.InsertedID
+}
+
+func GetDataLapangan(stats string) (data []Lapangan) {
+	user := MongoConnect("proyek1").Collection("lapangan")
+	filter := bson.M{"nama": stats}
+	cursor, err := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataLapangan :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetDataKategori(stats string) (data []Kategori) {
+	user := MongoConnect("proyek1").Collection("kategori")
+	filter := bson.M{"turnamen": stats}
+	cursor, err := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataKategori :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetDataKontak(stats string) (data []Kontak) {
+	user := MongoConnect("proyek1").Collection("kontak")
+	filter := bson.M{"phone_number": stats}
+	cursor, err := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataKontak :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetDataBank(stats string) (data []Bank) {
+	user := MongoConnect("proyek1").Collection("bank")
+	filter := bson.M{"nama_bank": stats}
+	cursor, err := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataBank :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetDataDiskon(stats string) (data []Diskon) {
+	user := MongoConnect("proyek1").Collection("diskon")
+	filter := bson.M{"dikurang": stats}
+	cursor, err := user.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataDiskon :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }
